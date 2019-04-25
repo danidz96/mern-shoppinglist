@@ -1,3 +1,16 @@
 .card-item {
 	width: 18rem;
 }
+
+.button-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.add-to-cart {
+	margin-right: auto;
+}
+
+.btn-action {
+	margin-left: 10px;
+}
