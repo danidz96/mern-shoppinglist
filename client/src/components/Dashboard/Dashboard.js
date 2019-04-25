@@ -17,6 +17,15 @@ const Dashboard = () => {
 		[ items.length ]
 	);
 
+	const handleDelete = (itemSelected) => {
+		const itemsFiltered = [ items.filter((item) => item._id !== itemSelected._id) ];
+
+		axios
+			.delete(`api/items/${itemSelected._id}`)
+			.then((res) => setItems(...itemsFiltered))
+			.catch((err) => console.log(err));
+	};
+
 	return (
 		<div className="container">
 			<div className="create-item mb-5">
@@ -24,17 +33,17 @@ const Dashboard = () => {
 					Crear nuevo item
 				</Link>
 			</div>
-			<ul className="row">
+			<div className="row">
 				{items.length > 0 ? (
 					items.map((item) => (
-						<div class="mb-2 col-lg-4 col-md-6 col-xs-12">
-							<ItemCard item={item} key={item._id} />
+						<div key={item._id} className="mb-2 col-lg-4 col-md-6 col-xs-12">
+							<ItemCard onDelete={handleDelete} item={item} />
 						</div>
 					))
 				) : (
 					'Cargando...'
 				)}
-			</ul>
+			</div>
 		</div>
 	);
 };

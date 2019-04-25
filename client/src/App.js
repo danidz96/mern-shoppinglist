@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Dashboard from './components/Dashboard/Dashboard';
 import CreateItem from './components/CreateItem/CreateItem';
+import EditItem from './components/EditItem/EditItem';
 import './styles/App.css';
 
 const App = () => {
@@ -13,7 +14,8 @@ const App = () => {
 				<Navbar />
 				<Route exact path={'/'} component={Dashboard} />
 				<Route exact path={'/create-item'} component={CreateItem} />
-				<Footer />
+				<Route exact path={'/edit-item/:id'} component={EditItem} />
+				<Footer />>
 			</div>
 		</Router>
 	);

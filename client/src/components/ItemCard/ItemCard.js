@@ -1,7 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import EditItem from '../EditItem/EditItem';
 import './styles.css';
 
-const ItemCard = ({ item }) => {
+const ItemCard = (props) => {
+	const { item } = props;
+
+	const onDelete = () => {
+		props.onDelete(item);
+	};
+
 	return (
 		<div className="col-sm-3">
 			<div className="card card-item">
@@ -13,10 +21,18 @@ const ItemCard = ({ item }) => {
 						<button className="btn add-to-cart btn-success btn-sm">
 							<i className="fas fa-shopping-cart" />
 						</button>
-						<button className="btn btn-action btn-secondary btn-sm">
+						<Link
+							to={{
+								pathname: `/edit-item/${item._id}`,
+								state: {
+									item
+								}
+							}}
+							className="btn btn-action btn-secondary btn-sm"
+						>
 							<i className="far fa-edit" />
-						</button>
-						<button className="btn btn-action btn-danger btn-sm">
+						</Link>
+						<button onClick={onDelete} className="btn btn-action btn-danger btn-sm">
 							<i className="far fa-trash-alt" />
 						</button>
 					</div>
