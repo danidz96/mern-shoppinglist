@@ -15,7 +15,7 @@ module.exports = function validateItemInput(data) {
 		errors.name = 'El nombre es necesario';
 	}
 
-	if (!Validator.isFloat(data.price, { min: 0 })) {
+	if (!Validator.isNumeric(data.price)) {
 		errors.price = 'El precio no puede ser menor a 0';
 	}
 
