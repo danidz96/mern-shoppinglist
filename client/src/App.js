@@ -15,7 +15,7 @@ const App = () => {
 				<Route exact path={'/'} component={Dashboard} />
 				<Route exact path={'/create-item'} component={CreateItem} />
 				<Route exact path={'/edit-item/:id'} component={EditItem} />
-				<Footer />>
+				<Footer />
 			</div>
 		</Router>
 	);

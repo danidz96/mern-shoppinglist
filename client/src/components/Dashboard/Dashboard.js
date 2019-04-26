@@ -6,23 +6,20 @@ import axios from 'axios';
 const Dashboard = () => {
 	const [ items, setItems ] = useState([]);
 
-	useEffect(
-		() => {
-			const fetchData = async () => {
-				const result = await axios.get('/api/items');
-				setItems(result.data);
-			};
-			fetchData();
-		},
-		[ items.length ]
-	);
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await axios.get('/api/items');
+			setItems(result.data);
+		};
+		fetchData();
+	}, []);
 
 	const handleDelete = (itemSelected) => {
 		const itemsFiltered = [ items.filter((item) => item._id !== itemSelected._id) ];
-
+		setItems(...itemsFiltered);
 		axios
 			.delete(`api/items/${itemSelected._id}`)
-			.then((res) => setItems(...itemsFiltered))
+			.then((res) => console.log('Deleted'))
 			.catch((err) => console.log(err));
 	};
 
