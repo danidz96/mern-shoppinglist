@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EditItem from '../EditItem/EditItem';
 import './styles.css';
 
 const ItemCard = (props) => {
@@ -8,6 +7,10 @@ const ItemCard = (props) => {
 
 	const onDelete = () => {
 		props.onDelete(item);
+	};
+
+	const onAddToCart = () => {
+		props.onAddToCart(item);
 	};
 
 	return (
@@ -18,7 +21,7 @@ const ItemCard = (props) => {
 					<h6 className="card-subtitle mb-2 text-muted">{item.price} €</h6>
 					<p className="card-text">{item.description}</p>
 					<div className="button-container">
-						<button className="btn add-to-cart btn-success btn-sm">
+						<button onClick={onAddToCart} className="btn add-to-cart btn-success btn-sm">
 							<i className="fas fa-shopping-cart" />
 						</button>
 						<Link
