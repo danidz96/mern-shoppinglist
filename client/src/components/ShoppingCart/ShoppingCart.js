@@ -31,6 +31,15 @@ const ShoppingCart = () => {
 		return parseFloat(total.price).toFixed(2);
 	};
 
+	const handleDelete = (itemSelected) => {
+		const itemsFiltered = [ items.filter((item) => item._id !== itemSelected._id) ];
+		setItems(...itemsFiltered);
+		axios
+			.delete(`api/cart/${itemSelected._id}`)
+			.then((res) => console.log('Deleted'))
+			.catch((err) => console.log(err));
+	};
+
 	return (
 		<div className="container">
 			<div className="stats">
@@ -45,7 +54,7 @@ const ShoppingCart = () => {
 				{items.length > 0 ? (
 					items.map((item, index) => (
 						<div key={index}>
-							<ShoppingCartItem name={item.name} price={item.price} />
+							<ShoppingCartItem item={item} onDelete={handleDelete} />
 						</div>
 					))
 				) : (
