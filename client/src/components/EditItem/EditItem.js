@@ -15,7 +15,6 @@ const EditItem = (props) => {
 
 	const onChange = (input) => {
 		setItem({ ...item, [input.name]: input.value });
-		console.log(item);
 	};
 
 	const onSubmit = (e) => {
