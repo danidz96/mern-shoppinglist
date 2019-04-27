@@ -37,8 +37,8 @@ router.delete('/:item_id', (req, res) => {
 		.then((item) => {
 			Cart.findOne({}, {}, { sort: { created_at: -1 } })
 				.then((cart) => {
-					// TODO: mirar que no elimine todas las referencias
-					cart.items = cart.items.filter((itemCart) => (itemCart != req.params.item_id));
+					const index = cart.items.indexOf(req.params.item_id);
+					if (index >= 0) cart.items.splice(index, 1);
 					cart.save().then((cart) => res.json(cart));
 				})
 				.catch((err) => console.log(err));
