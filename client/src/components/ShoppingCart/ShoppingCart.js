@@ -32,8 +32,16 @@ const ShoppingCart = () => {
 	};
 
 	const handleDelete = (itemSelected) => {
-		const itemsFiltered = [ items.filter((item) => item._id !== itemSelected._id) ];
-		setItems(...itemsFiltered);
+		const itemsFiltered = items;
+
+		for (var i = itemsFiltered.length - 1; i >= 0; i--) {
+			if (itemsFiltered[i] === itemSelected) {
+				itemsFiltered.splice(i, 1);
+				break;
+			}
+		}
+
+		setItems([ ...itemsFiltered ]);
 		axios
 			.delete(`api/cart/${itemSelected._id}`)
 			.then((res) => console.log('Deleted'))
